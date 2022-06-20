@@ -3,7 +3,10 @@ import { StyleSheet, Text, View,Image ,Pressable} from "react-native";
 
 //import ImagePicker from 'react-native-image-picker';
 import { launchImageLibrary} from 'react-native-image-picker';
-import MediaMeta from 'react-native-media-meta';
+//import MediaMeta from 'react-native-media-meta';
+import Exif from 'react-native-exif'
+
+
 
 
 
@@ -21,9 +24,9 @@ export default function Home() {
         path: 'images',
       },
     };
-
-    
     launchImageLibrary(options, (response) => {
+      console.log('response', response);
+
      
       if (response.didCancel) {
         console.log('User cancelled image picker');
@@ -37,13 +40,27 @@ export default function Home() {
         console.log('response', response);
         setFilePath(response.assets[0])
        
-       
       }
      });
      
   };
 
-
+  useEffect(() => {
+    const removeFirst =filePath &&  filePath.uri.replace('file://', '');
+    console.log(removeFirst); // 👉️ ",one,two"
+    /* filePath && console.log('uri ', filePath.uri);
+    filePath && MediaMeta.get(removeFirst)
+        .then(metadata =>{
+          delete metadata.thumb ; 
+          console.log(metadata )
+        })
+        .catch(err => console.error(err));*/
+//-------------------------------------------
+        filePath &&  Exif.getExif(filePath.uri)
+        .then(msg => console.warn(msg))
+        .catch(msg => console.warn('ERROR: ' + msg))
+      
+  },[filePath]);
  
 
   return (
