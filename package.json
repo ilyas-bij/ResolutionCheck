@@ -1,5 +1,5 @@
 {
-  "name": "resolutioncheck",
+  "name": "image quality",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -10,12 +10,13 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "exif": "^0.6.0",
     "react": "17.0.2",
     "react-native": "0.68.2",
+    "react-native-document-picker": "^8.1.1",
     "react-native-exif": "^0.5.0",
-    "react-native-image-picker": "^4.8.4",
-    "react-native-media-meta": "^0.0.11"
+    "react-native-image-picker": "^4.8.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
